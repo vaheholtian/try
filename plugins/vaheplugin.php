@@ -13,19 +13,19 @@ Author URI: http://localhost/
 */
 
 
-function cptui_register_my_cpts_movies() {
+function cptui_register_my_cpts_projects() {
 
 	/**
-	 * Post Type: Movies.
+	 * Post Type: Projects.
 	 */
 
 	$labels = [
-		"name" => __( "Movies", "my-simple-theme" ),
-		"singular_name" => __( "Movie", "my-simple-theme" ),
+		"name" => __( "Projects", "my-simple-theme" ),
+		"singular_name" => __( "Project", "my-simple-theme" ),
 	];
 
 	$args = [
-		"label" => __( "Movies", "my-simple-theme" ),
+		"label" => __( "Projects", "my-simple-theme" ),
 		"labels" => $labels,
 		"description" => "",
 		"public" => true,
@@ -42,7 +42,7 @@ function cptui_register_my_cpts_movies() {
 		"capability_type" => "post",
 		"map_meta_cap" => true,
 		"hierarchical" => false,
-		"rewrite" => [ "slug" => "movies", "with_front" => true ],
+		"rewrite" => [ "slug" => "projects", "with_front" => true ],
 		"query_var" => true,
 		"menu_icon" => "dashicons-format-video",
 		"supports" => [ "title", "editor", "thumbnail" ],
@@ -50,10 +50,10 @@ function cptui_register_my_cpts_movies() {
 		"show_in_graphql" => false,
 	];
 
-	register_post_type( "movies", $args );
+	register_post_type( "projects", $args );
 }
 
-add_action( 'init', 'cptui_register_my_cpts_movies' );
+add_action( 'init', 'cptui_register_my_cpts_projects' );
 
 
 function create_client_tax() {
