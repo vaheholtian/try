@@ -18,8 +18,8 @@ function create_client_tax() {
             'client',  // Your post type
             array( 
                 'hierarchical'  => false, 
-                'label'         => __( 'Tags', CURRENT_THEME ), 
-                'singular_name' => __( 'Tag', CURRENT_THEME ), 
+                'label'         => __( 'Tags', "my-simple-theme" ), 
+                'singular_name' => __( 'Tag', "my-simple-theme" ), 
                 'rewrite'       => true, 
                 'query_var'     => true 
             )  
