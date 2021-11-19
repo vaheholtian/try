@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: Vahe Plugin
+ * Plugin Name: VahePlugin
  * Plugin URI: https://github.com/keygen-sh/example-wordpress-plugin
  * Description: This is an example WP plugin that utilizes Keygen for licensing.
  * Version: 1.0.0
