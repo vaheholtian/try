@@ -13,6 +13,11 @@ Author URI: http://localhost/
 */
 
 
+function gp_register_taxonomy_for_object_type() {
+    register_taxonomy_for_object_type( 'post_tag', 'portfolio' );
+};
+add_action( 'init', 'gp_register_taxonomy_for_object_type' );
+
 function cptui_register_my_taxes_artists() {
 
 	/**
