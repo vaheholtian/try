@@ -1,58 +1,96 @@
 <?php
 /**
- * Plugin Name: VahePlugin
- * Plugin URI: https://github.com/keygen-sh/example-wordpress-plugin
- * Description: This is an example WP plugin that utilizes Keygen for licensing.
- * Version: 1.0.0
- * Author: Keygen
- * Author URI: https://keygen.sh
- * License: GPL
+ * @package vahes_plugin
+ * @version 1
  */
-namespace Vahe;
+/*
+Plugin Name: Vahe's Test Plugin
+Plugin URI: http://localhost
+Description: This is just a test plugin to add tags
+Author: Vahe Holtian
+Version: 1
+Author URI: http://localhost/
+*/
 
 
-class VahePlugin {
-add_action( 'init', 'create_tag_taxonomies', 0 );
+function hello_vahe() {
+	$chosen = "Hello darkness my old friend";
 
-//create two taxonomies, genres and tags for the post type "tag"
-function create_tag_taxonomies() 
-{
-  // Add new taxonomy, NOT hierarchical (like tags)
-  $labels = array(
-    'name' => _x( 'Tags', 'taxonomy general name' ),
-    'singular_name' => _x( 'Tag', 'taxonomy singular name' ),
-    'search_items' =>  __( 'Search Tags' ),
-    'popular_items' => __( 'Popular Tags' ),
-    'all_items' => __( 'All Tags' ),
-    'parent_item' => null,
-    'parent_item_colon' => null,
-    'edit_item' => __( 'Edit Tag' ), 
-    'update_item' => __( 'Update Tag' ),
-    'add_new_item' => __( 'Add New Tag' ),
-    'new_item_name' => __( 'New Tag Name' ),
-    'separate_items_with_commas' => __( 'Separate tags with commas' ),
-    'add_or_remove_items' => __( 'Add or remove tags' ),
-    'choose_from_most_used' => __( 'Choose from the most used tags' ),
-    'menu_name' => __( 'Tags' ),
-  ); 
-
-  register_taxonomy('tag','portfolio',array(
-    'hierarchical' => false,
-    'labels' => $labels,
-    'show_ui' => true,
-    'update_count_callback' => '_update_post_term_count',
-    'query_var' => true,
-    'rewrite' => array( 'slug' => 'tag' ),
-  ));
+	printf(
+		'<p id="vahe"><span class="screen-reader-text">%s </span><span dir="ltr"%s>%s</span></p>',
+		__( 'Quote from Hello:' ),
+		'en',
+		$chosen
+	);
 }
 
+// Now we set that function up to execute when the admin_notices action is called.
+add_action( 'admin_notices', 'hello_vahe' );
+
+// We need some CSS to position the paragraph.
+function vahe_css() {
+	echo "
+	<style type='text/css'>
+	#vahe {
+		float: right;
+		padding: 5px 10px;
+		margin: 0;
+		font-size: 12px;
+		color: red;
+		line-height: 1.6666;
+	}
+	.rtl #vahe {
+		float: left;
+	}
+	.block-editor-page #vahe {
+		display: none;
+	}
+	@media screen and (max-width: 782px) {
+		#vahe,
+		.rtl #vahe {
+			float: none;
+			padding-left: 0;
+			padding-right: 0;
+		}
+	}
+	</style>
+	";
 }
 
+add_action( 'admin_head', 'vahe_css' );
 
-// Load our plugin within the WP admin dashboard.
-if (is_admin()) {
-  $plugin = new VahePlugin();
-  $plugin->load();
+
+function cptui_register_my_taxes_artists() {
+
+	/**
+	 * Taxonomy: Artists.
+	 */
+
+	$labels = [
+		"name" => __( "Artists", "my-simple-theme" ),
+		"singular_name" => __( "Artist", "my-simple-theme" ),
+	];
+
+	
+	$args = [
+		"label" => __( "Artists", "my-simple-theme" ),
+		"labels" => $labels,
+		"public" => true,
+		"publicly_queryable" => true,
+		"hierarchical" => true,
+		"show_ui" => true,
+		"show_in_menu" => true,
+		"show_in_nav_menus" => true,
+		"query_var" => true,
+		"rewrite" => [ 'slug' => 'artists', 'with_front' => true, ],
+		"show_admin_column" => true,
+		"show_in_rest" => true,
+		"show_tagcloud" => false,
+		"rest_base" => "artists",
+		"rest_controller_class" => "WP_REST_Terms_Controller",
+		"show_in_quick_edit" => false,
+		"show_in_graphql" => false,
+	];
+	register_taxonomy( "artists", [ "post" ], $args );
 }
-
-?>
+add_action( 'init', 'cptui_register_my_taxes_artists' );
