@@ -1,3 +1,17 @@
+<?php
+/**
+ * Plugin Name: Vahe Plugin
+ * Plugin URI: https://github.com/keygen-sh/example-wordpress-plugin
+ * Description: This is an example WP plugin that utilizes Keygen for licensing.
+ * Version: 1.0.0
+ * Author: Keygen
+ * Author URI: https://keygen.sh
+ * License: GPL
+ */
+namespace Vahe;
+
+
+class VahePlugin {
 add_action( 'init', 'create_tag_taxonomies', 0 );
 
 //create two taxonomies, genres and tags for the post type "tag"
@@ -31,4 +45,14 @@ function create_tag_taxonomies()
     'rewrite' => array( 'slug' => 'tag' ),
   ));
 }
+
+}
+
+
+// Load our plugin within the WP admin dashboard.
+if (is_admin()) {
+  $plugin = new VahePlugin();
+  $plugin->load();
+}
+
 ?>
