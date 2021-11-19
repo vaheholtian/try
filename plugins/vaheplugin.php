@@ -12,6 +12,21 @@ Version: 1
 Author URI: http://localhost/
 */
 
+function create_client_tax() {
+    register_taxonomy( 
+            'client_tag', //your tags taxonomy
+            'client',  // Your post type
+            array( 
+                'hierarchical'  => false, 
+                'label'         => __( 'Tags', CURRENT_THEME ), 
+                'singular_name' => __( 'Tag', CURRENT_THEME ), 
+                'rewrite'       => true, 
+                'query_var'     => true 
+            )  
+        );
+}
+ add_action( 'init', 'create_client_tax' );
+
 
 function gp_register_taxonomy_for_object_type() {
     register_taxonomy_for_object_type( 'post_tag', 'portfolio' );
