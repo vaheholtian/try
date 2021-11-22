@@ -20,14 +20,15 @@ get_header();
 			$newfield = get_post_meta( get_the_ID(), 'newfield', true);
  	
 	
+
+			get_template_part( 'template-parts/content', get_post_type() );
+	
 			if( ! empty( $newfield ) ) {
 		
-				echo '<h3>My Field: ' . $newfield . '<h3>';
+				echo '<h3>My Field: ' . $newfield . '</h3>';
 	
 			}
 			
-			get_template_part( 'template-parts/content', get_post_type() );
-
 			the_post_navigation();
 
 			// If comments are open or we have at least one comment, load up the comment template.
