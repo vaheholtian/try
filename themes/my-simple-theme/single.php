@@ -12,7 +12,13 @@ get_header();
 
 	<div id="primary" class="content-area">
 		<main id="main" class="site-main">
-
+<?php
+$meta = get_post_meta( get_the_ID(), 'Sponsored Post' );
+if( $meta[0] == 'Yes' ) {
+?>
+<p>This post is sponsored content, and we received a free copy of the product in order to conduct our review.</p>
+<?php } ?>
+			
 		<?php
 		while ( have_posts() ) :
 			the_post();
