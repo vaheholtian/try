@@ -33,9 +33,9 @@ get_header();
 		?>
 			<?php 
  
-	$my_book_title = get_post_meta( get_the_ID(), 'newfield', true);
+	$newfield = get_post_meta( get_the_ID(), 'newfield', true);
  
-	if( ! empty( $my_book_title ) ) {
+	if( ! empty( $newfield ) ) {
 		echo '<h3>My Field: ' . $newfield . '<h3>';
 	}
  
