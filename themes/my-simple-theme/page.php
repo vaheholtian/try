@@ -31,6 +31,15 @@ get_header();
 
 		endwhile; // End of the loop.
 		?>
+			<?php 
+ 
+	$my_book_title = get_post_meta( get_the_ID(), 'newfield', true);
+ 
+	if( ! empty( $my_book_title ) ) {
+		echo '<h3>My Field: ' . $newfield . '<h3>';
+	}
+ 
+?>
 
 		</main><!-- #main -->
 	</div><!-- #primary -->
