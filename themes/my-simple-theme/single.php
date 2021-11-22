@@ -16,7 +16,16 @@ get_header();
 		<?php
 		while ( have_posts() ) :
 			the_post();
-
+ 	
+			$newfield = get_post_meta( get_the_ID(), 'newfield', true);
+ 	
+	
+			if( ! empty( $newfield ) ) {
+		
+				echo '<h3>My Field: ' . $newfield . '<h3>';
+	
+			}
+			
 			get_template_part( 'template-parts/content', get_post_type() );
 
 			the_post_navigation();
@@ -29,11 +38,7 @@ get_header();
 		endwhile; // End of the loop.
 		?>
 		<?php 
- 		$newfield = get_post_meta( get_the_ID(), 'newfield', true);
- 	
-		if( ! empty( $newfield ) ) {
-			echo '<h3>My Field: ' . $newfield . '<h3>';
-		}
+
 		?>
 		</main><!-- #main -->
 	</div><!-- #primary -->
