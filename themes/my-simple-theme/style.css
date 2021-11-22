@@ -891,6 +891,10 @@ a:hover, a:active {
 /*--------------------------------------------------------------
 # Media
 --------------------------------------------------------------*/
+.custom-logo-link {
+	display: inline-block;
+}
+
 .page-content .wp-smiley,
 .entry-content .wp-smiley,
 .comment-content .wp-smiley {
