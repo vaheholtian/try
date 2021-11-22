@@ -28,15 +28,7 @@ get_header();
 
 		endwhile; // End of the loop.
 		?>
-			<?php 
- 
-	$newfield = get_post_meta( get_the_ID(), 'newfield', true);
- 
-	if( ! empty( $newfield ) ) {
-		echo '<h3>My Field: ' . $newfield . '<h3>';
-	}
- 
-?>
+
 		</main><!-- #main -->
 	</div><!-- #primary -->
 
