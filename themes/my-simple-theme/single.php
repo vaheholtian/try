@@ -25,7 +25,7 @@ get_header();
 	
 			if( ! empty( $newfield ) ) {
 		
-				echo '<div class="customfield">My custom field: ' . $newfield . '</vahe>';
+				echo '<div class="customfield">My custom field: ' . $newfield . '</div>';
 	
 			}
 			
